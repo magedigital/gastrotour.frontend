@@ -217,8 +217,8 @@ class Name extends FormPage {
     render() {
         const { error, loadingKey } = this.state;
         const { user, type } = this.props;
-        const { lastError, prizes, extraDataRequired } = user;
-        const prize = prizes?.[0];
+        const { lastError } = user;
+        // const prize = prizes?.[0];
         const typeFields = this.allFields?.[type];
 
         return (
@@ -226,27 +226,26 @@ class Name extends FormPage {
                 {type === 'anket' && (
                     <div className="form__head">
                         <h1 className="form__headTitle">
-                            Анкета призёра акции
-                            <br />
-                            «Орехопад подарков»
+                            Для получения приза, пожалуйста, заполните все поля и приложите
+                            необходимые документы
                         </h1>
                         {lastError && <div className="form__headError">{lastError}</div>}
-                        {extraDataRequired?.passportPage1 && (
+                        {/* {extraDataRequired?.passportPage1 && (
                             <p className="form__headText">
                                 Заполнить анкету нужно для того, чтобы провести оплату налогов за
                                 приз — это Организатор берёт на себя. Нам нужны только реальные
                                 данные: чем точнее и быстрее заполните, тем скорее сможете получить
                                 свой подарок. Заполнение анкеты займёт 10 минут.
                             </p>
-                        )}
+                        )} */}
 
-                        <p className="form__headText">
+                        {/* <p className="form__headText">
                             Для получения приза <b>«{prize?.title}»</b>, пожалуйста, заполните все
                             поля анкеты
                             {extraDataRequired?.passportPage1
                                 ? ' и приложите сканы документов:'
                                 : ':'}
-                        </p>
+                        </p> */}
                     </div>
                 )}
                 {type === 'rest' && (
