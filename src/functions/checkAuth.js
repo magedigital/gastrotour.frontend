@@ -29,7 +29,7 @@ const getJwt = async () => {
     }
 };
 
-export default async function checkAuth(start = false) {
+export default async function checkAuth(start = false, status) {
     await dispatcher({ type: 'authIsError', data: false });
 
     if (start) {
@@ -55,6 +55,10 @@ export default async function checkAuth(start = false) {
 
         if (localStorage.getItem('currentStep') === 'rest') {
             data.status = 'REST';
+        }
+
+        if (status) {
+            data.status = status;
         }
 
         await dispatcher({ type: 'user', data });

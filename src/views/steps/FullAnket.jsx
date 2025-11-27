@@ -49,7 +49,14 @@ class Name extends FormPage {
         },
     };
 
+    keys = {
+        anket: 'EXTRA_ANKET_REQUIRED',
+        guest: 'GUEST',
+        rest: 'REST',
+    };
+
     async handlerUpload(name, { target }) {
+        const { type } = this.props;
         const formData = new FormData();
 
         formData.set('file', target.files[0]);
@@ -71,7 +78,7 @@ class Name extends FormPage {
             const { result } = res.data;
 
             if (result === 'OK') {
-                await checkAuth();
+                await checkAuth(false, this.keys[type]);
 
                 this.initFields();
             }
