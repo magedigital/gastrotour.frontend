@@ -1,0 +1,67 @@
+.button {
+    position: relative;
+    z-index: 1;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 16px 20px;
+    overflow: hidden;
+    color: #fff;
+    text-align: center;
+    background: #7d24ff;
+    border-radius: 360px;
+    @extend %reset;
+    @extend %row;
+    @extend %click;
+    @include button(0.97);
+
+    &:hover {
+        background: #954cff;
+    }
+
+    &__content {
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 1.3;
+        transition: $trans;
+        @extend %reset;
+    }
+
+    &._loader &__content {
+        opacity: 0;
+    }
+
+    &__loader {
+        z-index: 100;
+        background: inherit;
+        @extend %reset;
+        @extend %loader;
+
+        &Item {
+            width: 26px;
+            height: 26px;
+            @extend %reset;
+            @extend %loaderItem;
+            @include loaderColor(#fff);
+        }
+    }
+
+    &._pulsation {
+        animation: pulsation 1.5s infinite ease-in-out;
+
+        @keyframes pulsation {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.07);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+    }
+}

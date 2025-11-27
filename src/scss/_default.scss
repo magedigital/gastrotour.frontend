@@ -1,0 +1,361 @@
+﻿%reset {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-weight: 400;
+    font-family: "Ys";
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: unset;
+    text-decoration: none;
+    list-style-type: none;
+    background: none;
+    border: 0;
+    border-radius: 0;
+    outline: none;
+    box-shadow: none;
+    -webkit-appearance: none;
+    -webkit-font-smoothing: antialiased;
+}
+
+@mixin bg($url, $size, $pos) {
+    background-image: url($url);
+    background-repeat: no-repeat;
+    background-position: $pos;
+    background-size: $size;
+}
+
+@mixin mediaMin($w) {
+    @media screen and (min-width: $w) {
+        @content;
+    }
+}
+
+@mixin media($w1, $w2) {
+    @media screen and (min-width: $w1) and (max-width: $w2) {
+        @content;
+    }
+}
+
+html {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    @extend %reset;
+}
+
+@mixin icon($color, $colorFill: null, $colorStroke: null, $colorAll: null) {
+    @if $colorFill {
+        & .icon__fill {
+            fill: $colorFill;
+        }
+    }
+
+    @if $colorStroke {
+        & .icon__stroke {
+            stroke: $colorStroke;
+        }
+    }
+
+    @if $colorAll {
+        & .icon__all {
+            fill: $colorAll;
+            stroke: $colorAll;
+        }
+    }
+
+    @if $colorFill==null and $colorStroke==null and $colorAll==null {
+        & .icon__fill {
+            fill: $color;
+        }
+
+        & .icon__stroke {
+            stroke: $color;
+        }
+    }
+}
+
+@mixin inParent($parent, $class) {
+    .#{$parent}.#{$class} & {
+        @content;
+    }
+}
+
+@mixin blur($val) {
+    & {
+        -webkit-backdrop-filter: saturate(180%) blur($val);
+        backdrop-filter: saturate(180%) blur($val);
+    }
+}
+
+@mixin button($value: 0.98) {
+    transition: $trans;
+
+    @include mediaMin($mediaM + 1px) {
+        will-change: transform;
+    }
+
+    &:active {
+        transform: scale(#{$value});
+    }
+}
+
+%MEDIA {
+    &._mobile {
+        @include mediaMin($mediaM + 1px) {
+            display: none;
+        }
+    }
+
+    &._desktop {
+        @include media(0, $mediaM) {
+            display: none;
+        }
+    }
+}
+
+br {
+    @extend %MEDIA;
+}
+
+%section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+%inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 136rem;
+
+    @include media(0, $mediaM) {
+        width: 93vw;
+    }
+}
+
+%row {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+%col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+%click {
+    user-select: none;
+    @include mediaMin($mediaM + 1px) {
+        cursor: pointer;
+    }
+}
+
+%noscroll {
+    -ms-overflow-style: none;
+    overflow: -moz-scrollbars-none;
+
+    &::-webkit-scrollbar {
+        display: none;
+        width: 0;
+        height: 0;
+    }
+}
+
+._desktopMedia {
+    @include media(0, $mediaM) {
+        display: none;
+    }
+}
+
+._mobileMedia {
+    @include mediaMin($mediaM + 1px) {
+        display: none;
+    }
+}
+
+._noWrap {
+    white-space: nowrap;
+}
+
+._wrap {
+    word-break: break-all;
+}
+
+%loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    transition: $trans;
+    @extend %reset;
+    @extend %col;
+
+    &:not(._show) {
+        opacity: 0;
+    }
+}
+
+%loaderItem {
+    width: 30px;
+    height: 30px;
+    margin: auto;
+    @extend %reset;
+}
+
+@mixin loadFont() {
+    .body__main._fontsLoad & {
+        @content;
+    }
+}
+
+@mixin loader($color) {
+    & .blockLoader__item:after {
+        background: $color;
+    }
+
+    & .blockLoader__icon {
+        @include icon($color);
+    }
+}
+
+@mixin loaderColor($color) {
+    & .blockLoader__itemInner {
+        background: $color;
+    }
+}
+
+%loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 11;
+    width: 100%;
+    height: 100%;
+    transition: $trans;
+    @extend %col;
+
+    &:not(._show) {
+        opacity: 0;
+    }
+}
+
+%loaderItem {
+    width: 4rem;
+    height: 4rem;
+    margin: auto;
+}
+
+%title {
+    color: #fff;
+    font-weight: 600;
+    font-size: 3.75rem;
+    line-height: 1.3;
+    @extend %reset;
+
+    @include media(0, $mediaM) {
+        font-size: 3.9rem;
+    }
+
+    &._dark {
+        color: $colorDark;
+    }
+}
+
+%subTitle {
+    margin-top: 1.3rem;
+    color: #fff;
+    font-weight: 500;
+    font-size: 2.85rem;
+    line-height: 1.3;
+    text-align: center;
+    @extend %reset;
+
+    &._dark {
+        color: $colorDark;
+    }
+}
+
+._TITLE {
+    color: #fff;
+    font-size: 4.75rem;
+    font-family: "Meloriac";
+    line-height: 1.2;
+    letter-spacing: 0.3rem;
+
+    @include media(0, $mediaM) {
+        font-size: 3.7rem;
+        line-height: 1.3;
+    }
+
+    &._mediumSize {
+        font-size: 2.8rem;
+        line-height: 1.2;
+        letter-spacing: 0.2rem;
+
+        @include media(0, $mediaM) {
+            font-size: 3.2rem;
+            line-height: 1.3;
+        }
+    }
+
+    &._yellow {
+        color: #ffd600;
+    }
+}
+
+._TEXTBLOCK {
+    padding: 1.3rem 1.7rem 1.2rem 1.7rem;
+    color: #fff;
+    font-weight: 600;
+    font-size: 2.35rem;
+    text-transform: uppercase;
+    background: #5c0f8b;
+    border-radius: 1.5rem;
+
+    @include media(0, $mediaM) {
+        padding: 1.4rem 1.5rem 1.3rem 1.5rem;
+        font-weight: 500;
+        font-size: 2.15rem;
+        border-radius: 1.2rem;
+    }
+
+    & span {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 3.5rem;
+        height: 3.5rem;
+        margin: -0.5rem 0.5rem;
+        color: #fff;
+        font-weight: 900;
+        font-size: 2.1rem;
+        background: #ff6b00;
+        border-radius: 50%;
+    }
+}
+
+._INNERTITLE {
+    color: #5c0f8b;
+    font-size: 4.7rem;
+    font-family: "Meloriac";
+    letter-spacing: 0.3rem;
+    text-transform: uppercase;
+    @extend %reset;
+
+    @include media(0, $mediaM) {
+        font-size: 3.8rem;
+        line-height: 1.2;
+        letter-spacing: 0.2rem;
+        text-align: center;
+    }
+}

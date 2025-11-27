@@ -1,0 +1,94 @@
+.innerPageHead {
+    align-items: center;
+    width: 100%;
+    @extend %reset;
+    @extend %col;
+
+    &._outside {
+        padding-bottom: 5rem;
+
+        @include media(0, $mediaM) {
+            padding: 0 3rem 3rem 3rem;
+        }
+    }
+
+    &__title {
+        text-align: center;
+        @extend %title;
+    }
+
+    &__title + &__description {
+        margin-top: 1.5rem;
+
+        @include media(0, $mediaM) {
+            margin-top: 2rem;
+        }
+    }
+
+    &__description {
+        color: #5c0f8b;
+        font-size: 3.8rem;
+        font-family: "Meloriac";
+        line-height: 1.2;
+        text-align: center;
+        @extend %reset;
+
+        @include media(0, $mediaM) {
+            font-size: 3.2rem;
+            line-height: 1.3;
+        }
+
+        &._white {
+            color: #fff;
+            font-weight: 500;
+            font-size: 2.4rem;
+            font-family: "Geologica";
+            line-height: 1.4;
+            text-transform: uppercase;
+        }
+    }
+
+    &__alert {
+        margin: 4rem 0 0 0;
+        padding: 0.7rem 1.7rem;
+        color: #a82185;
+        font-weight: 600;
+        font-size: 1.85rem;
+        background: #fed900;
+        border-radius: 0.6rem;
+        @extend %reset;
+
+        @include media(0, $mediaM) {
+            padding: 1.3rem 1.5rem;
+            font-size: 2rem;
+        }
+    }
+
+    &__button {
+        // width: 28rem;
+        margin-top: 3rem;
+        @extend %reset;
+
+        @include media(0, $mediaM) {
+            width: 28rem;
+            margin-top: 4rem;
+        }
+    }
+
+    &__error {
+        transition: $trans;
+        @extend %reset;
+
+        &._parent {
+            max-width: 100%;
+
+            &._static {
+                @extend %col;
+            }
+        }
+
+        &:not(._empty) {
+            margin-top: 1rem;
+        }
+    }
+}

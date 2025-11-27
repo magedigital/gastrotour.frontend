@@ -1,0 +1,75 @@
+.checkbox {
+    width: 100%;
+    @extend %reset;
+    @extend %col;
+
+    &__inner {
+        position: relative;
+        display: block;
+        min-height: 32px;
+        padding-left: 34px;
+        will-change: transform;
+        @extend %reset;
+        @extend %click;
+        @include button(0.98);
+    }
+
+    &__input {
+        display: none;
+    }
+
+    &__point {
+        position: absolute;
+        top: -3px;
+        left: 0;
+        z-index: 1;
+        width: 24px;
+        height: 24px;
+        overflow: hidden;
+        background: #eee;
+        border-radius: 6px;
+        transition: $trans;
+        @extend %reset;
+        @extend %col;
+
+        &Icon {
+            display: block;
+            width: 16px;
+            height: 16px;
+            margin: auto;
+            transform: translate(-20px, 20px) rotate(-45deg);
+            opacity: 0;
+            transition: $trans;
+            will-change: transform;
+            @extend %reset;
+        }
+    }
+
+    &__input:checked ~ &__point {
+        background: #000;
+        border-color: transparent;
+    }
+
+    &__input:checked ~ &__point &__pointIcon {
+        transform: none;
+        opacity: 1;
+    }
+
+    &__content {
+        color: #000;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 1.3;
+        @extend %reset;
+
+        & a {
+            display: inline-block;
+            color: #000;
+            font-weight: 400;
+            border-bottom: 1px solid rgba(#000, 0.9);
+            transition: $trans;
+            @extend %reset;
+            @extend %click;
+        }
+    }
+}

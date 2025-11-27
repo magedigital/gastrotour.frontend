@@ -1,0 +1,23 @@
+.icon {
+    @extend %reset;
+    @extend %col;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+
+    & svg {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    & ellipse,
+    & path,
+    & circle,
+    & line,
+    & polyline {
+        transition: $trans;
+    }
+}

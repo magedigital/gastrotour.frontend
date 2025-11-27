@@ -1,0 +1,53 @@
+.animateChange {
+    @extend %reset;
+    position: relative;
+    transition: $trans;
+
+    &._static {
+        position: relative;
+    }
+
+    &__item {
+        @extend %reset;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: $trans;
+        will-change: transform;
+
+        &:not(._show) {
+            opacity: 0;
+
+            &:not(._end) {
+                transform: translate(0, -1rem);
+            }
+        }
+
+        &._hide:not(._end) {
+            transform: translate(0, 1rem);
+        }
+    }
+
+    &:not(._static)._center &__item {
+        transform: translate(-50%, 0);
+        left: 50%;
+
+        &:not(._show) {
+            &:not(._end) {
+                transform: translate(-50%, -1rem);
+            }
+        }
+
+        &._hide:not(._end) {
+            transform: translate(-50%, 1rem);
+        }
+    }
+
+    &._static &__item {
+        position: relative;
+
+        &:not(._show) {
+            display: none;
+        }
+    }
+}
