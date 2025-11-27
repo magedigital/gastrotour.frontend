@@ -1,6 +1,6 @@
 import axios from 'axios';
 import saveJWT from './saveJWT';
-import { dispatcher } from '../redux/redux';
+import { dispatcher, store } from '../redux/redux';
 import getHeaders from './getHeaders';
 
 const getJwt = async () => {
@@ -46,23 +46,42 @@ export default async function checkAuth(start = false, status) {
         const response = await axios.get('/api/GetParticipantInfo', { headers: getHeaders() });
 
         const { JWT, data } = response.data;
+        const resultUser = data;
 
         saveJWT(JWT);
 
+        const prevUser = store.getState().user;
+
         if (localStorage.getItem('currentStep') === 'guest') {
-            data.status = 'GUEST';
+            resultUser.status = 'GUEST';
         }
 
         if (localStorage.getItem('currentStep') === 'rest') {
-            data.status = 'REST';
+            resultUser.status = 'REST';
         }
 
         if (status) {
-            data.status = status;
+            resultUser.status = status;
         }
 
-        await dispatcher({ type: 'user', data });
+        if (prevUser) {
+            const { extraDataRequired } = prevUser;
+
+            Object.keys(resultUser.extraDataRequired).forEach((key) => {
+                if (extraDataRequired[key].value) {
+                    resultUser.extraDataRequired[key].value = extraDataRequired[key].value;
+                }
+            });
+
+            if (extraDataRequired) {
+                resultUser.extraDataRequired.policy = extraDataRequired.policy;
+            }
+        }
+
+        // console.log(resultUser);
+        await dispatcher({ type: 'user', data: resultUser });
     } catch (error) {
+        console.log(error);
         await dispatcher({ type: 'authIsError', data: true });
     }
 }

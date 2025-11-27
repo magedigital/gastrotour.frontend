@@ -68,9 +68,7 @@ class Name extends FormPage {
             const res = await axios.post(
                 `${process.env.REACT_APP_API}/api/UploadParticipantFile`,
                 formData,
-                {
-                    headers: getHeaders(),
-                },
+                { headers: getHeaders() },
             );
 
             requestSuccess(res);
