@@ -64,7 +64,7 @@ export default async function checkAuth(start = false, status) {
             resultUser.status = status;
         }
 
-        if (prevUser) {
+        if (prevUser && resultUser.extraDataRequired) {
             const { extraDataRequired } = prevUser;
 
             Object.keys(resultUser.extraDataRequired).forEach((key) => {
