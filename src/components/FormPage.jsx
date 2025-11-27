@@ -112,7 +112,7 @@ class FormPage extends React.Component {
             if (field.type === 'select') {
                 type = 'select';
 
-                selectList = user?.dictionaries?.[name]?.map((item) => ({
+                selectList = user?.dictionaries?.[field.dictionary]?.map((item) => ({
                     key: item.ID,
                     content: item.title,
                 }));
