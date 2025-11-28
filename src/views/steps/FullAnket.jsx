@@ -199,15 +199,17 @@ class Name extends FormPage {
             Object.keys(extraDataRequired).forEach((key) => {
                 const fieldData = extraDataRequired[key];
 
-                fields[key] = fieldData.value || this.state.fields?.[key];
+                if (fieldData) {
+                    fields[key] = fieldData.value || this.state.fields?.[key];
 
-                const stepKey = this.stepKeys[fieldData.step];
+                    const stepKey = this.stepKeys[fieldData.step];
 
-                if (!allFields[stepKey]) {
-                    allFields[stepKey] = {};
+                    if (!allFields[stepKey]) {
+                        allFields[stepKey] = {};
+                    }
+
+                    allFields[stepKey][key] = { ...fieldData };
                 }
-
-                allFields[stepKey][key] = { ...fieldData };
             });
 
             if (user.status === 'PARTICIPANT') {
