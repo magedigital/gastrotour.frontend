@@ -71,7 +71,7 @@ export default async function checkAuth(start = false, status) {
 
             if (extraDataRequired) {
                 Object.keys(resultUser.extraDataRequired).forEach((key) => {
-                    if (extraDataRequired[key].value) {
+                    if (extraDataRequired[key]?.value) {
                         resultUser.extraDataRequired[key].value = extraDataRequired[key].value;
                     }
                 });
