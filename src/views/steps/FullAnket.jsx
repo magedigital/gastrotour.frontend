@@ -106,7 +106,7 @@ class Name extends FormPage {
 
     async sendAnket() {
         const { fields } = this.state;
-        const { user, setStep, type } = this.props;
+        const { user, setStep, type, next } = this.props;
         const { extraDataRequired } = user;
         const body = {};
 
@@ -160,6 +160,8 @@ class Name extends FormPage {
                 saveJWT(JWT);
 
                 await checkAuth();
+
+                next();
             }
 
             handlerLoading.call(this, null);
@@ -197,7 +199,6 @@ class Name extends FormPage {
             Object.keys(extraDataRequired).forEach((key) => {
                 const fieldData = extraDataRequired[key];
 
-                console.log(key, fieldData);
                 fields[key] = fieldData.value || this.state.fields?.[key];
 
                 const stepKey = this.stepKeys[fieldData.step];
