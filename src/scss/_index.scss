@@ -87,7 +87,6 @@
 
         &Title {
             max-width: 100%;
-            margin-bottom: 36px;
             font-size: 20px;
             line-height: 26px;
             text-align: center;
@@ -106,6 +105,7 @@
         }
         &Text {
             max-width: 100%;
+            margin-top: 36px;
             color: rgba(#171a24a3, 0.64);
             font-size: 12px;
             line-height: 16px;

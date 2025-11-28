@@ -30,6 +30,12 @@ class Name extends FormPage {
         3: 'guest',
     };
 
+    revStepKeys = {
+        anket: 1,
+        rest: 2,
+        guest: 3,
+    };
+
     fields = {
         policy: {
             type: 'checkbox',
@@ -83,6 +89,7 @@ class Name extends FormPage {
 
             handlerLoading.call(this, null);
         } catch (err) {
+            console.log(err);
             handlerLoading.call(this, null);
 
             try {
@@ -99,33 +106,33 @@ class Name extends FormPage {
 
     async sendAnket() {
         const { fields } = this.state;
-        const { user, type, next, setStep } = this.props;
+        const { user, setStep, type } = this.props;
         const { extraDataRequired } = user;
         const body = {};
 
-        if (type !== 'rest') {
-            const thisFields = this.allFields?.[type];
+        // if (type !== 'rest') {
+        //     const thisFields = this.allFields?.[type];
 
-            if (thisFields) {
-                let error;
+        //     if (thisFields) {
+        //         let error;
 
-                Object.keys(thisFields).forEach((name) => {
-                    if (!error && !fields[name] && extraDataRequired[name].type !== 'photo') {
-                        error = `Ошибка в поле ${extraDataRequired[name].title}`;
-                    }
-                });
+        //         Object.keys(thisFields).forEach((name) => {
+        //             if (!error && !fields[name] && extraDataRequired[name].type !== 'photo') {
+        //                 error = `Ошибка в поле ${extraDataRequired[name].title}`;
+        //             }
+        //         });
 
-                if (error) {
-                    this.setState({ error });
+        //         if (error) {
+        //             this.setState({ error });
 
-                    return;
-                }
-            }
+        //             return;
+        //         }
+        //     }
 
-            next();
+        //     next();
 
-            return;
-        }
+        //     return;
+        // }
 
         Object.keys(extraDataRequired).forEach((key) => {
             if (extraDataRequired[key].type !== 'photo') {
@@ -134,6 +141,7 @@ class Name extends FormPage {
         });
 
         body.agreement = !!fields.policy;
+        body.step = this.revStepKeys[type];
 
         await handlerLoading.call(this, true, { error: null });
 
@@ -185,7 +193,7 @@ class Name extends FormPage {
         const fields = {};
         const allFields = {};
 
-        if (user && extraDataRequired) {
+        if (extraDataRequired) {
             Object.keys(extraDataRequired).forEach((key) => {
                 const fieldData = extraDataRequired[key];
                 fields[key] = fieldData.value || this.state.fields?.[key];
