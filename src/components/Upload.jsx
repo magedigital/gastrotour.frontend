@@ -118,11 +118,9 @@ class Upload extends React.Component {
                                 </div>
                             </>
                         ) : (
-                            <>
-                                <div className="upload__resultFile">
-                                    <div className="upload__resultFileName">{file?.name}</div>
-                                </div>
-                            </>
+                            <div className="upload__resultFile">
+                                <div className="upload__resultFileName">{file?.name}</div>
+                            </div>
                         )}
 
                         <label htmlFor={id} className="upload__resultBtn">

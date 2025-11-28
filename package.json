@@ -2,7 +2,7 @@
     "name": "ms2024.frontend",
     "version": "1.0.0",
     "private": true,
-    "proxy": "https://orehopad.srv08.ru",
+    "proxy": "https://preprod.gastrotour.srv08.ru",
     "dependencies": {
         "axios": "^0.21.1",
         "browserify": "^17.0.0",

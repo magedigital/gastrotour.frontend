@@ -98,7 +98,7 @@ class FormPage extends React.Component {
         let withCityList;
         let selectList;
 
-        console.log(value, name);
+        // console.log(value, name);
 
         if (!field) {
             support =
