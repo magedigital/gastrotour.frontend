@@ -14,8 +14,6 @@ class Check extends React.Component {
     }
 
     render() {
-        const { user } = this.props;
-
         return (
             <>
                 <div ref={this.parent} className="form">
@@ -27,9 +25,13 @@ class Check extends React.Component {
                             <b>Спасибо, Ваши данные получены.</b>
                         </p>
                         <p>
+                            Оператор свяжется с Вами с официальной почты Акции
+                            gastrotour@thediversity.ru для уточнения деталей по вручению приза в
+                            течение 5 рабочих дней.
+                        </p>
+                        <p>
                             Если в данных будут обнаружены ошибки, мы пришлём Вам уведомление на
-                            Вашу электронную почту{' '}
-                            <span className="_noWrap">{user?.personal?.email}</span>.
+                            Вашу электронную почту
                         </p>
                     </div>
                 </div>
