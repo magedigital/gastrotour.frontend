@@ -106,7 +106,7 @@ class Name extends FormPage {
 
     async sendAnket() {
         const { fields } = this.state;
-        const { user, setStep, type, next } = this.props;
+        const { user, type, next } = this.props;
         const { extraDataRequired } = user;
         const body = {};
 
@@ -169,18 +169,7 @@ class Name extends FormPage {
             handlerLoading.call(this, null);
 
             try {
-                const { errorText, value: errorFieldName } = err.response.data;
-
-                if (errorFieldName) {
-                    const stepNum = extraDataRequired[errorFieldName]?.step;
-                    const key = this.stepKeys[stepNum];
-
-                    if (key) {
-                        setStep(key, errorText);
-
-                        return;
-                    }
-                }
+                const { errorText } = err.response.data;
 
                 this.setState({ error: errorText });
             } catch (error) {
