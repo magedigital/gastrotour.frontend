@@ -208,7 +208,7 @@ class Name extends FormPage {
                         allFields[stepKey] = {};
                     }
 
-                    allFields[stepKey][key] = { ...fieldData };
+                    allFields[stepKey][key] = JSON.parse(JSON.stringify(fieldData));
                 }
             });
 
