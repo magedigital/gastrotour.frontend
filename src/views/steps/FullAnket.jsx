@@ -196,6 +196,8 @@ class Name extends FormPage {
         if (extraDataRequired) {
             Object.keys(extraDataRequired).forEach((key) => {
                 const fieldData = extraDataRequired[key];
+
+                console.log(key, fieldData);
                 fields[key] = fieldData.value || this.state.fields?.[key];
 
                 const stepKey = this.stepKeys[fieldData.step];
