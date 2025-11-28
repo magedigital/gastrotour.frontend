@@ -26,14 +26,14 @@ class Name extends FormPage {
 
     stepKeys = {
         1: 'anket',
-        2: 'rest',
-        3: 'guest',
+        2: 'guest',
+        3: 'rest',
     };
 
     revStepKeys = {
         anket: 1,
-        rest: 2,
-        guest: 3,
+        guest: 2,
+        rest: 3,
     };
 
     fields = {
