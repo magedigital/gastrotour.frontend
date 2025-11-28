@@ -98,6 +98,8 @@ class FormPage extends React.Component {
         let withCityList;
         let selectList;
 
+        console.log(value, name);
+
         if (!field) {
             support =
                 typeof fieldInfo.support === 'function' ? fieldInfo.support() : fieldInfo.support;

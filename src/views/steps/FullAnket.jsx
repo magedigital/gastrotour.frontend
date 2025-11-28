@@ -200,7 +200,9 @@ class Name extends FormPage {
                 const fieldData = extraDataRequired[key];
 
                 if (fieldData) {
-                    fields[key] = fieldData.value || this.state.fields?.[key];
+                    fields[key] = JSON.parse(
+                        JSON.stringify(fieldData.value || this.state.fields?.[key]),
+                    );
 
                     const stepKey = this.stepKeys[fieldData.step];
 
