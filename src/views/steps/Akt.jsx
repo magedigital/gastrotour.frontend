@@ -33,11 +33,7 @@ class Akt extends FormPage {
             type: 'checkbox',
             support: () => (
                 <>
-                    Я соглашаюсь с{' '}
-                    <a href="/upload/docs/politics-full.pdf" target="_blank" rel="noreferrer">
-                        политикой конфиденциальности
-                    </a>{' '}
-                    и{' '}
+                    Я соглашаюсь с политикой конфиденциальности и{' '}
                     <a href="/upload/docs/agreement-full.pdf" target="_blank" rel="noreferrer">
                         обработкой персональных данных
                     </a>

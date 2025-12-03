@@ -16,8 +16,8 @@ const getJwt = async () => {
         return;
     }
 
-    const url = '/tests/orehopad/?authKey=24804-qMsOJOWQ&action=getJWT';
-    // const url = '/tests/orehopad/?authKey=24805-KmDbfhiM';
+    // const url = '/tests/orehopad/?authKey=24804-qMsOJOWQ&action=getJWT';
+    const url = '/tests/gastrotour/?authKey=24805-KmDbfhiM&action=getJWT';
 
     try {
         const response = await axios.get(url);
